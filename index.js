@@ -15,10 +15,15 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 databaseConnection();
 
+app.use("/api", messageRoute);
+app.use("/api", blogRoute);
+app.get('/', (req, res) => {
+    res.json({ message: "Welcome on our route" })
+})
+
 app.listen(port, () => {
     console.log("The app is listening on : " + port)
 })
 
-app.use("/api", messageRoute);
-app.use("/api", blogRoute);
+
 // app.use("/images", express.static("images"))

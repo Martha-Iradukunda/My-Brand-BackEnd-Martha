@@ -4,12 +4,12 @@ class blogController {
     static async createBlog(req, res) {
         try {
 
-            const imageUrl = `http://localhost:5000/images/${req.file.filename}`
+            // const imageUrl = `http://localhost:5000/images/${req.file.filename}`
 
             const blog = new Blog({
                 title: req.body.title,
                 description: req.body.description,
-                image: imageUrl,
+                // image: imageUrl,
                 blogBody: req.body.blogBody
             });
             await blog.save();
