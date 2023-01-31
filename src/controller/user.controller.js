@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 
 class UserController {
-    //create / register user
+    // register user
     static async createUser(req, res) {
 
         try {
@@ -17,8 +17,7 @@ class UserController {
             const hashedRepeatPassword = await bcrypt.hash(req.body.repeatPassword, salt)
 
             const user = new User({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                username: req.body.username,
                 email: req.body.email,
                 password: hashedPassword,
                 repeatPassword: hashedRepeatPassword
