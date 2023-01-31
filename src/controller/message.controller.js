@@ -7,6 +7,7 @@ class messageController {
             const message = new Message({
                 fname: req.body.fname,
                 lname: req.body.lname,
+                othername: req.body.othername,
                 email: req.body.email,
                 message: req.body.message,
             });

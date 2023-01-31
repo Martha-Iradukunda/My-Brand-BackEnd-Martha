@@ -9,11 +9,18 @@ const messageSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    othername: {
+        type: String,
+        required: false,
+
+    },
     email: {
+        //id
         type: String,
         required: true,
         unique: true
     },
+
     message: {
         type: String,
         required: true
