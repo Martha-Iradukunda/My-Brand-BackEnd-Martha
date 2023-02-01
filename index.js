@@ -33,6 +33,9 @@ const options = {
             },
 
         },
+        servers: [
+            { url: 'http:localhost:5500' }
+        ],
         components: {
             securitySchemes: {
                 bearerAuth: {
@@ -41,14 +44,16 @@ const options = {
                     in: 'header',
                     bearerformat: 'JWT',
                 }
+
             }
+
+
         },
+
+
         security: [{
             bearerAuth: []
-        }],
-        servers: [
-            { url: 'http:localhost:5500' }
-        ]
+        }]
     },
     apis: ['./src/routes/*.js'], //all routes are documented
 }
