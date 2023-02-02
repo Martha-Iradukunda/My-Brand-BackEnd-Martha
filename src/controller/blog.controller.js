@@ -5,7 +5,6 @@ class blogController {
         try {
 
             // const imageUrl = `http://localhost:5000/images/${req.file.filename}`
-
             const blog = new Blog({
                 title: req.body.title,
                 // description: req.body.description,

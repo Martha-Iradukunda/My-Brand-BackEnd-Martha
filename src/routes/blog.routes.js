@@ -3,8 +3,6 @@ import blogController from "../controller/blog.controller";
 import verifyAdmin from "../middlewares/verify.admin";
 const blogRoute = express.Router();
 
-//routes
-
 /**
  * @swagger
  * components:
@@ -91,8 +89,6 @@ const blogRoute = express.Router();
  *                items:
  *                  $ref: '#/components/schemas/schemas/Blog'
  */
-
-
 blogRoute.get("/blogs", blogController.getAllBlogs); //Get all blogs
 blogRoute.post("/blogs", blogController.createBlog); // create new blog
 //updating blogs
@@ -140,8 +136,6 @@ blogRoute.get("/blogs/:id", blogController.getSingleBlog); //get single blog
  *      404:
  *        description: not found 
  */
-
-
 blogRoute.delete("/blogs/:id", blogController.deleteBlog); //delete single blog
 
 

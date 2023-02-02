@@ -3,7 +3,6 @@ import messageController from "../controller/message.controller";
 
 const messageRoute = express.Router();
 
-
 /**
  * @swagger
  * components:
@@ -130,7 +129,7 @@ messageRoute.get("/messages", messageController.getAllMessages)
  */
 messageRoute.patch("/messages/:id", messageController.updateMessage)
 messageRoute.get("/messages/:id", messageController.getSingleMessage);
-//deleting blog
+//deleting message
 
 /**
  * @swagger
@@ -139,7 +138,7 @@ messageRoute.get("/messages/:id", messageController.getSingleMessage);
  *   summary: Delete one message
  *   tags: [Message]
  *   parameters:
- *          - $ref: '#/components/parameters/blogId'
+ *          - $ref: '#/components/parameters/messageId'
  *   responses:
  *      200:
  *        description: Message deleted
@@ -149,9 +148,5 @@ messageRoute.get("/messages/:id", messageController.getSingleMessage);
  *        description: not found 
  */
 messageRoute.delete("/messages/:id", messageController.deleteMessage)
-
-
-
-
 
 export default messageRoute;

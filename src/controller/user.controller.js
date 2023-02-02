@@ -2,8 +2,6 @@ import User from '../middleware/Models/user.model'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-
-
 class UserController {
     // register user
     static async createUser(req, res) {
@@ -21,7 +19,6 @@ class UserController {
                 email: req.body.email,
                 password: hashedPassword,
                 repeatPassword: hashedRepeatPassword
-
             });
             await user.save();
             res.status(201).json({
@@ -38,8 +35,6 @@ class UserController {
         }
 
     }
-
-
     static async login(req, res) {
         try {
 
@@ -71,9 +66,6 @@ class UserController {
                 "successMessage": "LoggedIn successfully!",
                 "token": token
             });
-
-
-
         } catch (err) {
             res.status(500).json(err.message);
 
@@ -81,54 +73,74 @@ class UserController {
 
     }
 
-
-
     //get single user
     static async getSingleUser(req, res) {
-        try {
+            try {
 
-            const singleUser = await User.findById(req.params.id)
-            if (!singleUser) {
+                const singleUser = await User.findById(req.params.id)
+                if (!singleUser) {
+                    res.status(404).json({
+                        status: "fail",
+                        message: "user not found!!!"
+                    });
+                    return;
+                }
+
+                res.status(200).json({
+                    status: "success",
+                    data: singleUser
+                });
+            } catch (error) {
+                res.status(500).json({
+
+                    status: "fail",
+                    error: error.message
+                });
+            }
+        }
+        //get all users
+    static async getAllUsers(req, res) {
+            try {
+                const users = await User.find();
+                res.status(200).json({
+                    status: "success",
+                    allUsers: users
+                })
+            } catch (error) {
                 res.status(404).json({
                     status: "fail",
-                    message: "user not found!!!"
+                    error: error.message
                 });
-                return;
             }
-
-            res.status(200).json({
-                status: "success",
-                data: singleUser
-            });
-        } catch (error) {
-            res.status(500).json({
-
-                status: "fail",
-                error: error.message
-            });
         }
-    }
-
-
-    //get all users
-    static async getAllUsers(req, res) {
+        ////
+    static async updateUser(req, res) {
+        if (req.body.password) {
+            const salt = await bcrypt.genSalt(10);
+            req.body.password = await bcrypt.hash(req.body.password, salt);
+        }
         try {
-            const users = await User.find();
-            res.status(200).json({
-                status: "success",
-                allUsers: users
-            })
+            const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+                $set: req.body,
+            }, { new: true });
+            res.status(200).json(updatedUser);
         } catch (error) {
-            res.status(404).json({
-                status: "fail",
-                error: error.message
-            });
+            res.status(500).json(error)
         }
     }
 
-
-
-
+    static async deleteUser(req, res) {
+        try {
+            const user = await User.findById(req.params.id);
+            if (!user) {
+                return res.status(404).json({ status: "fail", message: "The user not found" });
+            }
+            await User.findByIdAndDelete(req.params.id);
+            res.status(200).json({ status: "success", data: null, message: 'User deleted!' });
+        } catch (error) {
+            res.status(500).json({ status: "error", error: error.message });
+        }
+    }
 
 }
 export default UserController
