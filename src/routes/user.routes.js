@@ -70,7 +70,7 @@ const userRoute = express.Router();
 
 /**
  * @swagger
- * /api/users:
+ * /api/signUp:
  *    post:
  *      summary: creating user
  *      tags: [User]
@@ -86,10 +86,31 @@ const userRoute = express.Router();
  *          400:
  *              $ref: '#/components/responses/400'
  */
+//LOGIN
+
 
 /**
  * @swagger
- * /api/users:
+ * /api/login:
+ *    post:
+ *      summary: Login user
+ *      tags: [User]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#/components/schemas/User'
+ *      responses:
+ *          200:
+ *              description: User logged in Successfully!
+ *          400:
+ *              $ref: '#/components/responses/400'
+ */
+
+/**
+ * @swagger
+ * /api/getAllUsers:
  *  get:
  *    summary: getting all users signed up
  *    tags: [User]
@@ -104,14 +125,18 @@ const userRoute = express.Router();
  *                  $ref: '#/components/schemas/schemas/User'
  */
 
-userRoute.post("/users", UserController.login);
-userRoute.post("/users", UserController.createUser);
-userRoute.get("/users", verifyAdmin, UserController.getAllUsers)
+///
+
+
+userRoute.post("/login", UserController.login);
+userRoute.post("/signUp", UserController.createUser);
+userRoute.get("/getAllUsers", verifyAdmin, UserController.getAllUsers)
 
 //updating users
+
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/getSingleUser/{id}:
  *  patch:
  *      summary: updating User
  *      tags: [User]
@@ -133,12 +158,13 @@ userRoute.get("/users", verifyAdmin, UserController.getAllUsers)
  *          404:
  *              description: not found  
  */
-userRoute.get("/users/:id", verifyAdmin, UserController.getSingleUser);
-userRoute.patch("/users/:id", verifyAdmin, UserController.updateUser);
+
+userRoute.get("/getSingleUser/:id", verifyAdmin, UserController.getSingleUser);
+userRoute.patch("/updateUsers/:id", verifyAdmin, UserController.updateUser);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/deleteUser/{id}:
  *  delete:
  *   summary: Delete one user
  *   tags: [User]
@@ -152,6 +178,6 @@ userRoute.patch("/users/:id", verifyAdmin, UserController.updateUser);
  *      404:
  *        description: not found 
  */
-userRoute.delete("/users/:id", verifyAdmin, UserController.deleteUser);
+userRoute.delete("/deleteUser/:id", verifyAdmin, UserController.deleteUser);
 
 export default userRoute

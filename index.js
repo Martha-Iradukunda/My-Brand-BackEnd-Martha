@@ -21,7 +21,7 @@ const options = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'My APIs documentation',
+            title: 'Martha APIs documentation',
             version: '1.0.0',
             description: 'This Is my Brand backend documentation ',
             contact: {
