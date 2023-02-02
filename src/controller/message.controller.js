@@ -31,14 +31,55 @@ class messageController {
 
     //get all messages
     static async getAllMessages(req, res) {
+            try {
+                const messages = await Message.find();
+                res.status(200).json(messages)
+            } catch (error) {
+                res.status(404).json(error.message);
+            }
+        }
+        //delete messages
+
+    static async deleteMessage(req, res) {
         try {
-            const messages = await Message.find();
-            res.status(200).json(messages)
+
+            const deletemessage = await Message.findOneAndDelete({ _id: req.params.id })
+            res.status(200).json({
+                status: "success",
+                message: "Message deleted successfully!",
+                data: deletemessage
+            });
         } catch (error) {
-            res.status(404).json(error.message);
+            res.status(500).json({ error: error.message });
         }
     }
 
+    //update message
+
+    static async updateMessage(req, res) {
+        try {
+
+            // const imageUrl = `http://localhost:5000/images/${req.file.filename}`
+
+            const updatedMessage = await Message.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    fname: req.body.fname,
+                    lname: req.body.lname,
+                    othername: req.body.othername,
+                    email: req.body.email,
+                    message: req.body.message
+                }
+            }, { new: true });
+            res.status(200).json({
+                status: "success",
+                data: updatedMessage
+            });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
+
+
 
 export default messageController;

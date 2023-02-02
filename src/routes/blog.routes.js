@@ -25,20 +25,24 @@ const blogRoute = express.Router();
  *          required:
  *              -title
  *              -blogBody
+ *              -id
  *          properties:
- *              title:
+ *            title:
  *                  type: string
- *                  description: name of user
- *              blogBody:
+ *                  description: title of blog
+ *            blogBody:
  *                  type: string
- *                  description: password of user
+ *                  description: Body of blog
+ *            id:
+ *                  type: string
+ *                  description: Id of the blog
  *          example:
  *              title: Coding is gonna be fun.
  *              blogBody: for real education hide everything we need
  *  parameters:
  *           blogId:
- *              name : id
- *              in : path
+ *              name: id
+ *              in: path
  *              description: Id for specified blogId
  *              required: true
  *              schema:
@@ -52,7 +56,25 @@ const blogRoute = express.Router();
  *  description: All Blogs created
  */
 
-//Get all blogs created
+/**
+ * @swagger
+ * /api/blogs:
+ *    post:
+ *      summary: creating blog
+ *      tags: [Blog]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#/components/schemas/Blog'
+ *      responses:
+ *          200:
+ *              description: Blogs Created Successfully!
+ *          400:
+ *              $ref: '#/components/responses/400'
+ */
+
 /**
  * @swagger
  * /api/blogs:
@@ -67,12 +89,60 @@ const blogRoute = express.Router();
  *                schema:
  *                  type: array
  *                items:
- *                  $ref: '#/components/schemas/Blog'
+ *                  $ref: '#/components/schemas/schemas/Blog'
  */
+
 
 blogRoute.get("/blogs", blogController.getAllBlogs); //Get all blogs
 blogRoute.post("/blogs", blogController.createBlog); // create new blog
-blogRoute.put("/blogs/:id", verifyAdmin, blogController.updateBlog); //update existing blog
+//updating blogs
+/**
+ * @swagger
+ * /api/blogs/{id}:
+ *  patch:
+ *      summary: updating blogs
+ *      tags: [Blog]
+ *      parameters:
+ *          - $ref: '#/components/parameters/blogId'
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema: 
+ *                      $ref: '#/components/schemas/Blog'
+ *      responses:
+ *          200:
+ *              description: Success update
+ *          400:
+ *              $ref: '#/components/responses/400'
+ *          401: 
+ *              $ref: '#/components/responses/401'
+ *          404:
+ *              description: not found  
+ */
+blogRoute.patch("/blogs/:id", verifyAdmin, blogController.updateBlog); //update existing blog
 blogRoute.get("/blogs/:id", blogController.getSingleBlog); //get single blog
+//deleting blog
+
+/**
+ * @swagger
+ * /api/blogs/{id}:
+ *  delete:
+ *   summary: Delete one blog
+ *   tags: [Blog]
+ *   parameters:
+ *          - $ref: '#/components/parameters/blogId'
+ *   responses:
+ *      200:
+ *        description: Blog deleted
+ *      401:
+ *        description: Unauthorized
+ *      404:
+ *        description: not found 
+ */
+
+
+blogRoute.delete("/blogs/:id", blogController.deleteBlog); //delete single blog
+
 
 export default blogRoute;

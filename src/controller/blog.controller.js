@@ -8,7 +8,7 @@ class blogController {
 
             const blog = new Blog({
                 title: req.body.title,
-                description: req.body.description,
+                // description: req.body.description,
                 // image: imageUrl,
                 blogBody: req.body.blogBody
             });
@@ -19,17 +19,15 @@ class blogController {
             res.status(500).json({ "error": error.message });
         }
     }
-
     static async updateBlog(req, res) {
         try {
 
-            const imageUrl = `http://localhost:5000/images/${req.file.filename}`
+            // const imageUrl = `http://localhost:5000/images/${req.file.filename}`
 
             const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, {
                 $set: {
                     title: req.body.title,
-                    description: req.body.description,
-                    image: imageUrl,
+                    // image: imageUrl,
                     blogBody: req.body.blogBody
                 }
             }, { new: true });
@@ -41,7 +39,6 @@ class blogController {
             res.status(500).json({ error: error.message });
         }
     }
-
 
     // get single blog
 
@@ -73,7 +70,18 @@ class blogController {
         }
     }
 
+    static async deleteBlog(req, res) {
+        try {
 
-
+            const deleteBlogs = await Blog.findOneAndDelete({ _id: req.params.id })
+            res.status(200).json({
+                status: "success",
+                message: "Blog deleted successfully!",
+                data: deleteBlogs
+            });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
 export default blogController
