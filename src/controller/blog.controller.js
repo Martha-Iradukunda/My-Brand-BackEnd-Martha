@@ -1,4 +1,4 @@
-import Blog from "../middleware/Models/blog.model";
+const Blog = require("../middleware/Models/blog.model");
 
 class blogController {
     static async createBlog(req, res) {
@@ -83,4 +83,4 @@ class blogController {
         }
     }
 }
-export default blogController
+module.exports = blogController

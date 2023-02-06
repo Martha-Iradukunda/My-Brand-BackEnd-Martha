@@ -1,7 +1,7 @@
-import express from 'express'
-import UserController from '../Controller/user.controller'
-import User from '../middleware/Models/user.model';
-import verifyAdmin from '../middlewares/verify.admin'
+const express = require('express')
+const UserController = require('../Controller/user.controller')
+const User = require('../middleware/Models/user.model')
+const verifyAdmin = require('../middlewares/verify.admin')
 
 const userRoute = express.Router();
 
@@ -180,4 +180,4 @@ userRoute.patch("/updateUsers/:id", verifyAdmin, UserController.updateUser);
  */
 userRoute.delete("/deleteUser/:id", verifyAdmin, UserController.deleteUser);
 
-export default userRoute
+module.exports = userRoute

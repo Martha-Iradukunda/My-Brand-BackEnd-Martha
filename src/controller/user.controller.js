@@ -1,6 +1,6 @@
-import User from '../middleware/Models/user.model'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+const User = require('../middleware/Models/user.model')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 class UserController {
     // register user
@@ -143,4 +143,4 @@ class UserController {
     }
 
 }
-export default UserController
+module.exports = UserController

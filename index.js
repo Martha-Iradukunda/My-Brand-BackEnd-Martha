@@ -2,11 +2,11 @@ const express = require("express");
 const databaseConnection = require("./src/database/dataBase");
 // import cors from "cors";
 const dotenv = require("dotenv");
-import SwaggerUI from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
-import messageRoute from "./src/routes/message.routes";
-import blogRoute from "./src/routes/blog.routes";
-import userRoute from "./src/routes/user.routes";
+const SwaggerUI = require("swagger-ui-express");
+const swaggerJSDoc = require("swagger-jsdoc");
+const messageRoute = require("./src/routes/message.routes");
+const blogRoute = require("./src/routes/blog.routes");
+const userRoute = require("./src/routes/user.routes");
 
 const bcrypt = require('bcrypt')
 const app = express();
@@ -71,7 +71,7 @@ databaseConnection().then(() => {
     console.log(error)
 })
 
-export default app
+module.exports = app
 
 
 // app.use("/images", express.static("images"))

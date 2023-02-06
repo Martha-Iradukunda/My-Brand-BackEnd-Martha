@@ -1,5 +1,5 @@
-import express from "express";
-import messageController from "../controller/message.controller";
+const express = require("express");
+const messageController = require("../controller/message.controller");
 
 const messageRoute = express.Router();
 
@@ -149,4 +149,4 @@ messageRoute.get("/messages/:id", messageController.getSingleMessage);
  */
 messageRoute.delete("/messages/:id", messageController.deleteMessage)
 
-export default messageRoute;
+module.exports = messageRoute;

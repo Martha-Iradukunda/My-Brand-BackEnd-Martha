@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const blogValidateSChema = Joi.object({
 
@@ -20,4 +20,4 @@ const blogValidateSChema = Joi.object({
 
 })
 
-export default blogValidateSChema;
+module.exports = blogValidateSChema;

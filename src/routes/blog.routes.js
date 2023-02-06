@@ -1,6 +1,6 @@
-import express from "express";
-import blogController from "../controller/blog.controller";
-import verifyAdmin from "../middlewares/verify.admin";
+const express = require("express");
+const blogController = require("../controller/blog.controller");
+const verifyAdmin = require("../middlewares/verify.admin");
 const blogRoute = express.Router();
 
 /**
@@ -139,4 +139,4 @@ blogRoute.get("/blogs/:id", blogController.getSingleBlog); //get single blog
 blogRoute.delete("/blogs/:id", blogController.deleteBlog); //delete single blog
 
 
-export default blogRoute;
+module.exports = blogRoute;

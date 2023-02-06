@@ -1,4 +1,4 @@
-import Message from "../middleware/Models/message.model";
+const Message = require("../middleware/Models/message.model");
 
 class messageController {
     //create a contact message
@@ -82,4 +82,4 @@ class messageController {
 
 
 
-export default messageController;
+module.exports = messageController;

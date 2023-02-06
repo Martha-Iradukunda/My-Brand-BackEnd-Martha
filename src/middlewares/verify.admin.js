@@ -1,6 +1,6 @@
-import User from '../middleware/Models/user.model';
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
+const User = require('../middleware/Models/user.model');
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
 dotenv.config()
 
 
@@ -36,4 +36,4 @@ const verifyAdmin = async(req, res, next) => {
     }
 };
 
-export default verifyAdmin
+module.exports = verifyAdmin
