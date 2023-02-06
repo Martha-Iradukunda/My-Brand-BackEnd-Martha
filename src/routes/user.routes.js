@@ -3,6 +3,10 @@ const UserController = require('../Controller/user.controller.js');
 const User = require('../middleware/Models/user.model.js')
 const verifyAdmin = require('../middlewares/verify.admin.js')
 
+var c = require('../controller');
+c.users
+
+
 const userRoute = express.Router();
 
 /**

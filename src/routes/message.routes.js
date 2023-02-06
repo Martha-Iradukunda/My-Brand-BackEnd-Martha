@@ -3,6 +3,9 @@ const messageController = require("../controller/message.controller.js");
 
 const messageRoute = express.Router();
 
+var c = require('../controller');
+c.messages
+
 /**
  * @swagger
  * components:
