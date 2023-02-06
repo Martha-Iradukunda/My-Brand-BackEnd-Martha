@@ -1,7 +1,7 @@
-import express from "express";
-import databaseConnection from "./src/database/dataBase";
+const express = require("express");
+const databaseConnection = require("./src/database/dataBase");
 // import cors from "cors";
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 import SwaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 import messageRoute from "./src/routes/message.routes";
@@ -11,6 +11,7 @@ import userRoute from "./src/routes/user.routes";
 const bcrypt = require('bcrypt')
 const app = express();
 const port = process.env.PORT;
+// const { db } = require('./firebase.js')
 
 // app.use(cors());
 app.use(express.json());
@@ -54,23 +55,23 @@ const options = {
 const specs = swaggerJSDoc(options)
 databaseConnection().then(() => {
 
-        app.use("/api", messageRoute);
-        app.use("/api", blogRoute);
-        // app.use("/images", express.static("images"));
-        app.use('/api', userRoute)
-        app.get('/', (req, res) => {
-            res.json({ message: "Welcome on our route" })
-        })
-        app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs));
-
-        app.listen(process.env.port, () => {
-            console.log("The app is listening on : " + port)
-        })
-    }).catch((error) => {
-        console.log(error)
+    app.use("/api", messageRoute);
+    app.use("/api", blogRoute);
+    // app.use("/images", express.static("images"));
+    app.use('/api', userRoute)
+    app.get('/', (req, res) => {
+        res.json({ message: "Welcome on our route" })
     })
-    //app.listen(process.env.PORT)
+    app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs));
+
+    app.listen(process.env.port, () => {
+        console.log("The app is listening on : " + port)
+    })
+}).catch((error) => {
+    console.log(error)
+})
 
 export default app
+
 
 // app.use("/images", express.static("images"))
