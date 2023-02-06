@@ -1,6 +1,6 @@
 const express = require("express");
-const blogController = require("../controller/blog.controller");
-const verifyAdmin = require("../middlewares/verify.admin");
+const blogController = require("../controller/blog.controller.js");
+const verifyAdmin = require("../middlewares/verify.admin.js");
 const blogRoute = express.Router();
 
 /**

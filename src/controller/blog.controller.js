@@ -1,4 +1,4 @@
-const Blog = require("../middleware/Models/blog.model");
+const Blog = require("../middleware/Models/blog.model.js");
 
 class blogController {
     static async createBlog(req, res) {

@@ -1,4 +1,4 @@
-const User = require('../middleware/Models/user.model');
+const User = require('../middleware/Models/user.model.js');
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 dotenv.config()

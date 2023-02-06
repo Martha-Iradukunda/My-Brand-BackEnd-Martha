@@ -1,4 +1,4 @@
-const Message = require("../middleware/Models/message.model");
+const Message = require("../middleware/Models/message.model.js");
 
 class messageController {
     //create a contact message
