@@ -1,5 +1,5 @@
 const express = require('express')
-const UserController = require('../Controller/user.controller')
+import UserController from '../Controller/user.controller'
 const User = require('../middleware/Models/user.model')
 const verifyAdmin = require('../middlewares/verify.admin')
 
