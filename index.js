@@ -21,11 +21,12 @@ const options = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'Martha APIs documentation',
+            title: 'Martha\'s Express APIs documentation',
             version: '1.0.0',
-            description: 'This Is my Brand backend documentation ',
+            description: 'This Is my Brand backend documentation',
             contact: {
-                name: 'Martha Iradukunda'
+                name: 'Martha Iradukunda',
+                email: '\nSEmail: marthairadukunda1@gmail.com'
             },
 
         },
@@ -53,21 +54,22 @@ const options = {
 const specs = swaggerJSDoc(options)
 databaseConnection().then(() => {
 
-    app.use("/api", messageRoute);
-    app.use("/api", blogRoute);
-    // app.use("/images", express.static("images"));
-    app.use('/api', userRoute)
-    app.get('/', (req, res) => {
-        res.json({ message: "Welcome on our route" })
-    })
-    app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs));
+        app.use("/api", messageRoute);
+        app.use("/api", blogRoute);
+        // app.use("/images", express.static("images"));
+        app.use('/api', userRoute)
+        app.get('/', (req, res) => {
+            res.json({ message: "Welcome on our route" })
+        })
+        app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs));
 
-    app.listen(port, () => {
-        console.log("The app is listening on : " + port)
+        app.listen(process.env.port, () => {
+            console.log("The app is listening on : " + port)
+        })
+    }).catch((error) => {
+        console.log(error)
     })
-}).catch((error) => {
-    console.log(error)
-})
+    //app.listen(process.env.PORT)
 
 export default app
 
