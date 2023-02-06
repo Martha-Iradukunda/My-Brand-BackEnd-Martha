@@ -1,12 +1,12 @@
 const express = require("express");
-const databaseConnection = require("./src/database/dataBase");
+const databaseConnection = require("./src/database/dataBase.js");
 // import cors from "cors";
 const dotenv = require("dotenv");
 const SwaggerUI = require("swagger-ui-express");
 const swaggerJSDoc = require("swagger-jsdoc");
-const messageRoute = require("./src/routes/message.routes");
-const blogRoute = require("./src/routes/blog.routes");
-const userRoute = require("./src/routes/user.routes");
+const messageRoute = require("./src/routes/message.routes.js");
+const blogRoute = require("./src/routes/blog.routes.js");
+const userRoute = require("./src/routes/user.routes.js");
 
 const bcrypt = require('bcrypt')
 const app = express();
