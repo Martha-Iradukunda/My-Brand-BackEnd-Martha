@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const databaseConnection = async() => {
+    mongoose.set("strictQuery", false);
 
     try {
         await mongoose.connect(process.env.MONGODB_URL, {
+
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -12,5 +14,6 @@ const databaseConnection = async() => {
         console.log(err.message)
     }
 }
+
 
 module.exports = databaseConnection;
