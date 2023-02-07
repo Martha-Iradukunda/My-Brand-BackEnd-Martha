@@ -27,12 +27,12 @@ const options = {
             description: 'This Is my Brand backend documentation',
             contact: {
                 name: 'Martha Iradukunda',
-                email: '\nSEmail: marthairadukunda1@gmail.com'
+                email: '\nEmail: marthairadukunda1@gmail.com'
             },
 
         },
         servers: [
-            { url: 'http://localhost:4500' }
+            { url: 'http://localhost:6500' }
         ],
         components: {
             securitySchemes: {

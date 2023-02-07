@@ -4,11 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "test": "jest --watchAll --force-exit --coverage --PORT=5000 --timeout=10000",
         "dev": "nodemon --exec babel-node index.js",
         "start": "node --experimental-specifier-resolution=node index.js"
 
     },
     "jest": {
+
         "testEnvironment": "node",
         "coveragePathIgnorePatterns": [
             "/node_modules/"
