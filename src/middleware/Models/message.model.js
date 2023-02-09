@@ -11,14 +11,14 @@ const messageSchema = mongoose.Schema({
     },
     othername: {
         type: String,
-        required: false,
+        required: false
 
     },
     email: {
         //id
         type: String,
-        required: true,
-        unique: true
+        required: true
+            // unique: true
     },
 
     message: {

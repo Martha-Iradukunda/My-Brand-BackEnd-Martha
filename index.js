@@ -1,6 +1,6 @@
 const express = require("express");
 const databaseConnection = require("./src/database/dataBase.js");
-// import cors from "cors";
+const cors = require("cors");
 const dotenv = require("dotenv");
 const SwaggerUI = require("swagger-ui-express");
 const swaggerJSDoc = require("swagger-jsdoc");
@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT;
 // const { db } = require('./firebase.js')
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 dotenv.config(); //importing contents of .env file
 
