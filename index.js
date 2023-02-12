@@ -174,7 +174,7 @@ databaseConnection().then(() => {
     // app.use("/images", express.static("images"));
     app.use('/api', userRoute)
     app.get('/', (req, res) => {
-        res.json({ message: "Welcome on our route" })
+        res.json({ message: "Welcome to my BRAND routes" })
     })
     app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs));
 
