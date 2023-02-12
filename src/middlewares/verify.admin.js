@@ -19,6 +19,7 @@ const verifyAdmin = async(req, res, next) => {
 
         const loggeInUser = await User.findOne({ _id: req.user })
         const userRole = loggeInUser.role
+        console.log(loggeInUser)
 
         if (userRole !== "admin") {
             return res.status(401).json({

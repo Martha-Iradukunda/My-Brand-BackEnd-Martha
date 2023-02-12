@@ -15,10 +15,8 @@ const messageSchema = mongoose.Schema({
 
     },
     email: {
-        //id
         type: String,
         required: true
-            // unique: true
     },
 
     message: {

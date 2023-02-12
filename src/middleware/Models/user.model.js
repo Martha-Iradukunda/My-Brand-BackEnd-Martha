@@ -6,13 +6,12 @@ const userSchema = mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique: true
     },
 
     email: {
         type: String,
         required: true,
-        unique: true
-
     },
     password: {
         type: String,
@@ -25,7 +24,7 @@ const userSchema = mongoose.Schema({
 
     role: {
         type: String,
-        default: "user"
+        default: "admin"
     },
 
     isVerified: {
@@ -41,4 +40,5 @@ const userSchema = mongoose.Schema({
 })
 
 const User = mongoose.model('User', userSchema)
+module.exports = User.model('User', userSchema)
 module.exports = User

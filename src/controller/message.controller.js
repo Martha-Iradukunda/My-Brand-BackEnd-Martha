@@ -13,7 +13,7 @@ class messageController {
             });
             await message.save();
             res.status(201).json(message);
-            console.log("Message successfully sent!");
+            console.log("Message sent successfully!");
         } catch (error) {
             res.status(401).json(error.message);
         }
