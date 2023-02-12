@@ -41,7 +41,7 @@ class UserController {
             //check if user exists
             const user = await User.findOne({ email: req.body.email })
 
-            if (!user) {
+            if (!user || user == null) {
                 return res.status(400).json({
                     status: "fail",
                     "InvalidCredentials": "Invalid email or password"

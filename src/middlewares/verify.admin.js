@@ -5,30 +5,49 @@ dotenv.config()
 
 
 const verifyAdmin = async(req, res, next) => {
-
-    const verifyToken = req.headers["auth_token"];
-    if (!verifyToken) {
-        return res.status(401).json({
-            status: "fail",
-            unauthorizedAccess: "Access denied, Please login!"
-        });
-    }
     try {
-        const decodedToken = jwt.verify(verifyToken, process.env.JWT_SECRET);
-        req.user = decodedToken.id;
 
-        const loggeInUser = await User.findOne({ _id: req.user })
-        const userRole = loggeInUser.role
-        console.log(loggeInUser)
 
-        if (userRole !== "admin") {
+        const verifyToken = req.headers["auth_token"];
+        console.log({ verifyToken })
+
+        if (!verifyToken) {
+
             return res.status(401).json({
                 status: "fail",
-                unauthorized: "You are not allowed to peform this action"
-            })
+                unauthorizedAccess: "Access denied, Please login!"
+            });
+        }
+        const { err, value: decodedToken } = jwt.verify(verifyToken, process.env.JWT_SECRET, (err, value) => {
+
+            return { err, value }
+
+        });
+
+        if (err) {
+            console.log(err);
+            return res.status(401).json({
+                status: "fail",
+                unauthorizedAccess: "Access denied, Bad token!"
+            });
+        } else {
+
+            req.user = decodedToken.id;
+
+            const loggeInUser = await User.findOne({ _id: req.user })
+            const userRole = loggeInUser.role
+            console.log(loggeInUser)
+
+            if (userRole !== "admin") {
+                return res.status(401).json({
+                    status: "fail",
+                    unauthorized: "You are not allowed to peform this action"
+                })
+            }
+
+            next();
         }
 
-        next();
     } catch (err) {
         res.status(500).json({
             status: "fail",
